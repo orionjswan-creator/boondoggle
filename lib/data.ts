@@ -34,6 +34,7 @@ export type Destination = {
   country: string;
   slug: string;
   mood: string;
+  image: string;
   visualTone: string;
   whyGo: string;
   hostingStyle: string;
@@ -117,7 +118,7 @@ export const events: EventItem[] = [
     city: "Las Vegas",
     dates: "January 6-9, 2027",
     id: "ces-2027",
-    image: "https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/city-las-vegas.png",
     name: "CES 2027",
     plays: ["Stack executive demos by hotel tower", "Use dinner suites for partner launches", "Host late-night client tables after show-floor fatigue"],
     segment: "technology",
@@ -134,7 +135,7 @@ export const events: EventItem[] = [
     city: "Las Vegas",
     dates: "November 15-18, 2026",
     id: "hlth-2026",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/segment-medical.png",
     name: "HLTH 2026",
     plays: ["Host payer-provider dinners early in the week", "Reserve private rooms near the Strip", "Use breakfast meetings for investor and partner coverage"],
     segment: "medical",
@@ -151,7 +152,7 @@ export const events: EventItem[] = [
     city: "Chicago",
     dates: "November 29-December 3, 2026",
     id: "rsna-2026",
-    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/segment-medical.png",
     name: "RSNA 2026",
     plays: ["Book steakhouse rooms two to three months ahead", "Use hotel lounges for quick demos", "Plan small specialist dinners by modality"],
     segment: "medical",
@@ -166,7 +167,7 @@ export const events: EventItem[] = [
     city: "Las Vegas",
     dates: "November 16-19, 2026",
     id: "replus-2026",
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/segment-power.png",
     name: "RE+ 2026",
     plays: ["Host project finance dinners by geography", "Reserve private rooms near convention hotels", "Use breakfast slots for utility meetings"],
     segment: "power",
@@ -183,7 +184,7 @@ export const events: EventItem[] = [
     city: "Abu Dhabi",
     dates: "November 2-5, 2026",
     id: "adipec-2026",
-    image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/segment-petrochemical.png",
     name: "ADIPEC 2026",
     plays: ["Plan executive dinners by operator or region", "Reserve hotel meeting suites early", "Use sponsored receptions for multi-client coverage"],
     segment: "petrochemical",
@@ -198,7 +199,7 @@ export const events: EventItem[] = [
     city: "Las Vegas",
     dates: "October 25-28, 2026",
     id: "money2020-usa-2026",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/segment-finance.png",
     name: "Money20/20 USA 2026",
     plays: ["Use private rooms for bank and fintech partner dinners", "Plan investor breakfasts before keynote blocks", "Buy sponsored visibility around payment and fraud themes"],
     segment: "finance",
@@ -215,7 +216,7 @@ export const events: EventItem[] = [
     city: "Paris",
     dates: "June 16-19, 2027",
     id: "vivatech-2027",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/city-paris.png",
     name: "VivaTech 2027",
     plays: ["Host polished Seine-side dinners", "Book salons for investor-founder roundtables", "Use breakfast briefings for European market entry"],
     segment: "technology",
@@ -232,7 +233,7 @@ export const events: EventItem[] = [
     city: "Paris",
     dates: "June 14-20, 2027",
     id: "paris-air-show-2027",
-    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/editorial/scene-courtyard.png",
     name: "Paris Air Show 2027",
     plays: ["Reserve formal hospitality near Le Bourget", "Host defense and aerospace account dinners by delegation", "Use private salons for government and OEM meetings"],
     segment: "technology",
@@ -247,7 +248,7 @@ export const events: EventItem[] = [
     city: "London",
     dates: "June 7-11, 2027",
     id: "london-tech-week-2027",
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/city-london.png",
     name: "London Tech Week 2027",
     plays: ["Use Mayfair and City private rooms for enterprise dinners", "Host investor breakfasts near Olympia", "Build a private-club style evening for top accounts"],
     segment: "technology",
@@ -264,7 +265,7 @@ export const events: EventItem[] = [
     city: "London",
     dates: "November 3-5, 2026",
     id: "wtm-london-2026",
-    image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/editorial/scene-palazzo-hero.png",
     name: "World Travel Market London 2026",
     plays: ["Host destination buyer dinners by region", "Use hotel lounges for tourism-board briefings", "Build sponsor inventory around travel buyers"],
     segment: "finance",
@@ -279,7 +280,7 @@ export const events: EventItem[] = [
     city: "Tokyo",
     dates: "September 17-21, 2026",
     id: "tokyo-game-show-2026",
-    image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/city-tokyo.png",
     name: "Tokyo Game Show 2026",
     plays: ["Use business days for publisher and platform meetings", "Host compact Ginza or Marunouchi dinners", "Stack IP and entertainment partner meetings before public days"],
     segment: "technology",
@@ -294,7 +295,7 @@ export const events: EventItem[] = [
     city: "Tokyo",
     dates: "October 13-16, 2026",
     id: "ceatec-2026",
-    image: "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/segment-technology.png",
     name: "CEATEC 2026",
     plays: ["Run precision buyer meetings around Makuhari", "Use Tokyo dinners for senior executive follow-through", "Package sponsor placements around manufacturing and AI adoption"],
     segment: "technology",
@@ -309,7 +310,7 @@ export const events: EventItem[] = [
     city: "Honolulu",
     dates: "January 17-20, 2027",
     id: "ptc-honolulu-2027",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/city-hawaii.png",
     name: "PTC Honolulu 2027",
     plays: ["Use resort hospitality for C-level infrastructure meetings", "Host Pacific Rim investor dinners", "Plan morning oceanfront briefings before panels"],
     segment: "technology",
@@ -326,7 +327,7 @@ export const events: EventItem[] = [
     city: "Hawaiʻi Island",
     dates: "January 5-8, 2027",
     id: "hicss-2027",
-    image: "https://images.unsplash.com/photo-1542259009477-d625272157b7?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/global-destinations-hero.png",
     name: "HICSS 2027",
     plays: ["Bridge academic research and practitioner innovation", "Use resort breakfasts for research-industry conversations", "Capture AI and information-systems insights for strategy teams"],
     segment: "technology",
@@ -341,7 +342,7 @@ export const events: EventItem[] = [
     city: "Miami",
     dates: "September 28-October 1, 2026",
     id: "sibos-2026",
-    image: "https://images.unsplash.com/photo-1565373677928-90e963765eac?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/global-business-espresso-hero.png",
     name: "Sibos 2026",
     plays: ["Host bank-client dinners on Miami Beach", "Use breakfast briefings for compliance and payments teams", "Reserve hotel suites for private partnership meetings"],
     segment: "finance",
@@ -356,7 +357,7 @@ export const events: EventItem[] = [
     city: "Las Vegas",
     dates: "October 13-15, 2026",
     id: "itc-vegas-2026",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/segment-insurance.png",
     name: "ITC Vegas 2026",
     plays: ["Book broker-carrier dinners by line of business", "Use sponsored suites for claims and underwriting demos", "Host small reinsurer and insurtech investor tables"],
     segment: "insurance",
@@ -373,7 +374,7 @@ export const events: EventItem[] = [
     city: "Las Vegas",
     dates: "November 30-December 4, 2026",
     id: "aws-reinvent-2026",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=82",
+    image: "/assets/campaign/boondoggle-work-celebration.png",
     name: "AWS re:Invent 2026",
     plays: ["Plan account-based dinners by cloud workload", "Use suites for private demos", "Reserve hospitality blocks around AI and security launches"],
     segment: "technology",
@@ -393,7 +394,7 @@ export const cityGuides: CityGuide[] = [
       { name: "Wynn/Encore lounges", note: "Useful for small executive follow-ups", type: "Late meeting" }
     ],
     city: "Las Vegas",
-    image: "https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?auto=format&fit=crop&w=1200&q=82",
+    image: "/assets/campaign/city-las-vegas.png",
     tone: "Spectacle, speed, private rooms, and late-night deal heat.",
     businessEnergy: "Best when the goal is to compress a year of meetings into four electric days.",
     neighborhoods: ["The Strip", "Venetian/Palazzo", "Wynn corridor"],
@@ -411,7 +412,7 @@ export const cityGuides: CityGuide[] = [
     ],
     businessEnergy: "Paris makes business feel curated: polished rooms, patient dinners, high-context relationships.",
     city: "Paris",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=82",
+    image: "/assets/campaign/city-paris.png",
     neighborhoods: ["Porte de Versailles", "Le Bourget", "Saint-Germain", "8th Arrondissement"],
     picks: [
       { name: "Le Clarence", note: "Formal executive dinner energy", type: "Fine dining" },
@@ -428,7 +429,7 @@ export const cityGuides: CityGuide[] = [
     ],
     businessEnergy: "London rewards preparation: named targets, formal rooms, and serious follow-up.",
     city: "London",
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=82",
+    image: "/assets/campaign/city-london.png",
     neighborhoods: ["Mayfair", "The City", "Shoreditch", "Olympia", "Royal Docks"],
     picks: [
       { name: "The Wolseley", note: "Classic breakfast or client meal setting", type: "Institutional dining" },
@@ -445,7 +446,7 @@ export const cityGuides: CityGuide[] = [
     ],
     businessEnergy: "Tokyo is about precision: fewer wasted meetings, deeper preparation, and memorable execution.",
     city: "Tokyo",
-    image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1200&q=82",
+    image: "/assets/campaign/city-tokyo.png",
     neighborhoods: ["Marunouchi", "Ginza", "Shibuya", "Roppongi", "Makuhari"],
     picks: [
       { name: "Ginza private dining", note: "Polished executive hosting with discretion", type: "Private dining" },
@@ -462,7 +463,7 @@ export const cityGuides: CityGuide[] = [
     ],
     businessEnergy: "Hawaiʻi turns meetings into memory: longer attention, fewer distractions, stronger relationship recall.",
     city: "Honolulu",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=82",
+    image: "/assets/campaign/city-hawaii.png",
     neighborhoods: ["Waikiki", "Ala Moana", "Kakaʻako", "Ko Olina"],
     picks: [
       { name: "Oceanfront resort private room", note: "Best for senior relationship building", type: "Private dining" },
@@ -478,6 +479,7 @@ export const cityGuides: CityGuide[] = [
       { name: "Architectural river cruise", note: "Memorable non-dinner option in warmer months", type: "Client activity" }
     ],
     city: "Chicago",
+    image: "/assets/campaign/editorial/scene-banquet-hall.png",
     neighborhoods: ["West Loop", "River North", "South Loop"],
     picks: [
       { name: "Bavette's", note: "Polished client dinner room", type: "Steakhouse" },
@@ -492,6 +494,7 @@ export const cityGuides: CityGuide[] = [
       { name: "Miami Beach hotel cabanas", note: "Useful for informal relationship time", type: "Day hosting" }
     ],
     city: "Miami",
+    image: "/assets/global-business-espresso-hero.png",
     neighborhoods: ["Miami Beach", "Brickell", "Wynwood"],
     picks: [
       { name: "Prime 112", note: "High-energy executive dinner option", type: "Steakhouse" },
@@ -506,6 +509,7 @@ export const cityGuides: CityGuide[] = [
       { name: "Louvre Abu Dhabi", note: "Premium cultural option for senior guests", type: "Client activity" }
     ],
     city: "Abu Dhabi",
+    image: "/assets/campaign/segment-petrochemical.png",
     neighborhoods: ["ADNEC", "Al Maryah Island", "Corniche"],
     picks: [
       { name: "Zuma Abu Dhabi", note: "High-end international hospitality", type: "Client dinner" },
@@ -521,6 +525,7 @@ export const destinations: Destination[] = [
     city: "Las Vegas",
     country: "United States",
     hostingStyle: "High-energy dinners, suites, spectacle, and late-night networking.",
+    image: "/assets/campaign/city-las-vegas.png",
     mood: "Electric",
     signatureMove: "Stack meetings by hotel tower, then host one unforgettable dinner.",
     slug: "las-vegas",
@@ -531,6 +536,7 @@ export const destinations: Destination[] = [
     city: "Paris",
     country: "France",
     hostingStyle: "Private salons, Seine-side dinners, polished hospitality, and high-context introductions.",
+    image: "/assets/campaign/city-paris.png",
     mood: "Elegant",
     signatureMove: "Turn a conference meeting into a formal dinner that feels like a relationship milestone.",
     slug: "paris",
@@ -541,6 +547,7 @@ export const destinations: Destination[] = [
     city: "London",
     country: "United Kingdom",
     hostingStyle: "Breakfast briefings, private clubs, finance dinners, and institutional credibility.",
+    image: "/assets/campaign/city-london.png",
     mood: "Institutional",
     signatureMove: "Use Mayfair or the City for a serious room with senior people and a clear ask.",
     slug: "london",
@@ -551,6 +558,7 @@ export const destinations: Destination[] = [
     city: "Tokyo",
     country: "Japan",
     hostingStyle: "Precise meetings, compact executive dinners, media energy, and unforgettable after-hours atmosphere.",
+    image: "/assets/campaign/city-tokyo.png",
     mood: "Precise",
     signatureMove: "Use business-day discipline, then let Tokyo make the evening memorable.",
     slug: "tokyo",
@@ -561,6 +569,7 @@ export const destinations: Destination[] = [
     city: "Honolulu",
     country: "Hawaiʻi",
     hostingStyle: "Oceanfront trust-building, incentive rewards, Pacific Rim executive conversations.",
+    image: "/assets/campaign/city-hawaii.png",
     mood: "Restorative",
     signatureMove: "Make the business conversation feel like a reward people remember.",
     slug: "hawaii",
@@ -568,6 +577,27 @@ export const destinations: Destination[] = [
     whyGo: "The place for relationship-heavy meetings, incentives, telecom, and retreat-level strategic work."
   }
 ];
+
+export function getCityGuide(city: string) {
+  if (city.includes("Hawai")) return cityGuides.find((guide) => guide.city === "Honolulu") ?? cityGuides[0];
+  return cityGuides.find((guide) => guide.city === city) ?? cityGuides[0];
+}
+
+export const defaultCosts = {
+  dinner: "$150-$350/person",
+  hotel: "$220-$650/night",
+  pressure: "High during major event weeks",
+  room: "$1.5k-$15k"
+};
+
+export function getCosts(city: string) {
+  if (city.includes("Hawai")) return costProfiles["Hawaii Island"] ?? costProfiles.Honolulu ?? defaultCosts;
+  return costProfiles[city] ?? defaultCosts;
+}
+
+export function cityEvents(city: string) {
+  return events.filter((event) => event.city === city || (city === "Honolulu" && event.city.includes("Hawai")));
+}
 
 export function getScore(event: EventItem) {
   const cityDemand = events.filter((item) => item.city === event.city).length;

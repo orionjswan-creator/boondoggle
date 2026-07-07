@@ -1,87 +1,67 @@
 # Boondoggle
 
-Boondoggle is now a Next.js conference-intelligence MVP for discovering business events, planning client engagement, and generating internal approval memos.
+**Work trips worth taking.** Boondoggle is a conference-intelligence one-pager for finding the events around the country and the world where work is more interactive, engaging, and fun — then generating the manager-ready memo that gets the trip approved.
+
+## The experience
+
+The site is designed to award-site standards: one coherent art direction, expressive typography, choreographed motion, and full accessibility fallbacks.
+
+- **Opening journey** — a five-chapter scroll story (London → Tokyo → Hawaiʻi → Las Vegas → Paris) with crossfading city plates, animated cutouts, a clickable chapter rail, and a search handoff into the event board. Falls back to a static hero for `prefers-reduced-motion`.
+- **Manifesto** — mission statement with staggered word reveal and animated stat counters.
+- **Destinations** — editorial grid of the five city moods, wired to the event search.
+- **The event board** — searchable, segment-filtered index list with planning scores, a cursor-following image preview (desktop), and save-to-watchlist.
+- **Dossier** — per-event intelligence: score dial, budget signals, corporate plays, and the city hosting rail.
+- **The method** — five sticky-stacking phase cards.
+- **The approval memo** — business-case generator with live ROI metrics, a 3× break-even meter, and copy/print-ready output.
+- **Hosting playbooks** — horizontal snap-scroll city guides.
+- **Commercial layer** — clearly-labeled ad strategy and premium sponsor inventory.
+- **Footer** — oversized wordmark, world clocks, and full navigation.
+
+Craft details: page-load preloader (once per session), custom blend-mode cursor (fine pointers only), scroll progress bar, marquee bands, film-grain overlays, sweeping link underlines, and `MotionConfig reducedMotion="user"` so every animation respects OS motion preferences.
+
+## Design system
+
+- **Type**: [Fraunces](https://fonts.google.com/specimen/Fraunces) (display serif, optical sizing + WONK italics), Space Grotesk (UI/body), IBM Plex Mono (data labels) — all self-hosted via `next/font`.
+- **Palette**: `ink #101D28` · `paper #F4EDE0` · `cream #FBF7EC` · `gold #E8A33D` · `flare #E4572E` · `sea #14586C` · `glow #9BE7FF`.
+- **Imagery**: local illustrated campaign plates in `public/assets` (no remote image dependencies), served through `next/image`.
 
 ## Stack
 
-- Next.js App Router
-- React
-- TypeScript
+- Next.js App Router + React + TypeScript
 - Tailwind CSS
-- shadcn-style local UI primitives
-- Radix Slot
-- Motion
-- Lucide icons
-- Three.js
-- React Three Fiber
-- Drei
+- Motion (`motion/react`) for scroll choreography and micro-interactions
+- shadcn-style local UI primitives, Radix Slot, Lucide icons
+- Playwright (dev dependency) for visual verification
 
-The earlier static prototype is preserved in `legacy-static/`.
+## Run locally
 
-## Current Features
-
-- Searchable event intelligence by segment, city, audience, and venue.
-- Major/minor event scoring with `Must-plan`, `High-value`, `Selective`, and `Watchlist` labels.
-- Event detail intelligence: audience, budget signal, corporate plays, and city hosting guide.
-- City playbooks with private dining and things-to-do recommendations.
-- Saved-event interaction state.
-- Manager-ready business-case generator with ROI metrics.
-- Copy and print-ready approval memo.
-- Clearly labeled sponsor/ad inventory sections.
-- Full-bleed React Three Fiber hero scene with orbital event nodes and animated market signal geometry.
-
-## Visual Direction
-
-The current visual system is inspired by high-end interactive/editorial web references rather than copied from a single site:
-
-- Awwwards 3D and interactive site galleries for immersive visual ambition.
-- Siteinspire for editorial restraint and cleaner layout scanning.
-- React Three Fiber and Three.js examples for declarative WebGL scene structure.
-- Globe/data-viz patterns for event-city signal mapping.
-
-## Run Locally
-
-Use the Node/npm runtime available in this Codex environment:
-
-```powershell
-$nodeBin = "C:\Users\Ron Swanson\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin"
-$npmBin = "C:\Users\Ron Swanson\AppData\Local\OpenAI\Codex\runtimes\cua_node\1b23c930bdf84ed6\bin"
-$env:Path = "$nodeBin;$npmBin;$env:Path"
-& "$npmBin\npm.cmd" run dev
-```
-
-If port `3000` is already in use, run:
-
-```powershell
-& "$npmBin\npm.cmd" exec next dev -- --hostname 127.0.0.1 --port 3021
-```
-
-Current preview URL:
-
-```text
-http://127.0.0.1:3021/
+```bash
+npm install
+npm run dev     # http://127.0.0.1:3000
 ```
 
 ## Validate
 
-```powershell
-& "$npmBin\npm.cmd" run build
+```bash
+npm run build   # production build + type check
+npm run start   # serve the production build
 ```
 
-The production build currently passes.
+## Structure
 
-The 3D layer has been verified in-browser:
+```
+app/            layout, fonts, global styles, page orchestrator
+components/site tailored sections (hero journey, event board, memo, …)
+components/ui   button + badge primitives
+lib/            event/city/destination data, memo builder, utils
+public/assets   illustrated campaign plates and cutouts
+```
 
-- Canvas renders in the first viewport.
-- Canvas spans the hero area.
-- Screenshot frame-diff confirms the scene is moving.
-- Production build passes after the Three.js upgrade.
+## Next product steps
 
-## Next Product Steps
-
-- Move event, city, venue, and sponsor data into Payload CMS or Supabase.
-- Add real auth and persistent saved watchlists.
-- Add event submission and venue-claim workflows.
-- Add admin moderation for submitted conferences and sponsor listings.
-- Add generated SEO pages for `/events/[slug]`, `/cities/[slug]`, and `/segments/[slug]`.
-- Add AdSense only after final privacy policy, content depth, and publisher approval are ready.
+- Move event, city, venue, and sponsor data into a CMS (Payload/Supabase).
+- Real auth and persistent saved watchlists.
+- Event submission and venue-claim workflows.
+- Generated SEO pages for `/events/[slug]`, `/cities/[slug]`, `/segments/[slug]`.
+- Set `NEXT_PUBLIC_SITE_URL` and replace the placeholder contact address (`hello@boondoggle.events`) before launch.
+- AdSense only after privacy policy, content depth, and publisher approval are ready.

@@ -4,17 +4,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold disabled:pointer-events-none disabled:opacity-50",
+  "group/btn inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-300 ease-swift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     defaultVariants: {
       variant: "default"
     },
     variants: {
       variant: {
-        default: "bg-ink text-paper hover:bg-ink/90",
-        ghost: "border border-line bg-panel text-ink hover:bg-paper",
-        gold: "bg-gold text-ink hover:bg-gold/90",
-        forest: "bg-forest text-white hover:bg-forest/90"
+        default: "bg-ink text-paper hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-soft",
+        gold: "bg-gold text-ink hover:-translate-y-0.5 hover:bg-[#f0b356] hover:shadow-soft",
+        ghost: "border border-line bg-transparent text-ink hover:border-ink hover:bg-cream",
+        inverse: "border border-paper/30 bg-paper/10 text-paper backdrop-blur hover:border-paper/70 hover:bg-paper/20"
       }
     }
   }
