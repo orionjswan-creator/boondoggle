@@ -6,13 +6,12 @@ import { ArrowDownRight, Search, Star } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { SectionHeading } from "@/components/site/section-heading";
 import { getScore, getSignalLabel, segments, type EventItem } from "@/lib/data";
+import { useTrip } from "@/lib/trip-store";
 
 export function EventsBoard({
   events,
   onSelect,
-  onToggleSave,
   query,
-  savedIds,
   segment,
   selectedId,
   setQuery,
@@ -20,9 +19,7 @@ export function EventsBoard({
 }: {
   events: EventItem[];
   onSelect: (event: EventItem) => void;
-  onToggleSave: (id: string) => void;
   query: string;
-  savedIds: string[];
   segment: string;
   selectedId: string;
   setQuery: (value: string) => void;
@@ -32,6 +29,7 @@ export function EventsBoard({
   const [previewEvent, setPreviewEvent] = useState<EventItem | null>(null);
   const [canPreview, setCanPreview] = useState(false);
   const reduceMotion = useReducedMotion();
+  const { isSaved, toggleSavedEvent } = useTrip();
 
   const previewX = useMotionValue(0);
   const previewY = useMotionValue(0);
@@ -134,7 +132,7 @@ export function EventsBoard({
           <AnimatePresence initial={false} mode="popLayout">
             {events.map((event, index) => {
               const score = getScore(event);
-              const saved = savedIds.includes(event.id);
+              const saved = isSaved(event.id);
               const active = selectedId === event.id;
               return (
                 <motion.div
@@ -181,7 +179,7 @@ export function EventsBoard({
                         className={`grid size-10 place-items-center rounded-full border transition duration-300 ${
                           saved ? "border-gold bg-gold/15 text-gold-deep" : "border-line text-ink/50 hover:border-ink hover:text-ink"
                         }`}
-                        onClick={() => onToggleSave(event.id)}
+                        onClick={() => toggleSavedEvent(event.id)}
                         type="button"
                       >
                         <Star aria-hidden className={`size-4 ${saved ? "fill-gold" : ""}`} />

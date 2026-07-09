@@ -5,9 +5,11 @@ import { ArrowLeft, ArrowRight, Sparkles, Utensils } from "lucide-react";
 import { useRef, useState } from "react";
 import { SectionHeading } from "@/components/site/section-heading";
 import { cityGuides } from "@/lib/data";
+import { useTrip } from "@/lib/trip-store";
 
 export function Playbooks() {
   const railRef = useRef<HTMLUListElement>(null);
+  const { openBooking } = useTrip();
   const [position, setPosition] = useState(0);
 
   const scrollByCard = (direction: 1 | -1) => {
@@ -79,11 +81,20 @@ export function Playbooks() {
                   <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-sea">Book this first</p>
                   <ul className="mt-2.5 grid gap-2 text-sm">
                     {guide.picks.slice(0, 2).map((pick) => (
-                      <li className="flex items-start gap-2.5" key={pick.name}>
-                        <Utensils aria-hidden className="mt-0.5 size-3.5 shrink-0 text-flare-deep" />
-                        <span className="text-ink/80">
-                          <strong className="font-semibold text-ink">{pick.name}</strong> — {pick.note}
+                      <li className="flex items-start justify-between gap-2.5" key={pick.name}>
+                        <span className="flex items-start gap-2.5">
+                          <Utensils aria-hidden className="mt-0.5 size-3.5 shrink-0 text-flare-deep" />
+                          <span className="text-ink/80">
+                            <strong className="font-semibold text-ink">{pick.name}</strong> — {pick.note}
+                          </span>
                         </span>
+                        <button
+                          className="shrink-0 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-sea hover:text-gold-deep"
+                          onClick={() => openBooking({ city: guide.city, kind: "dining", label: pick.name })}
+                          type="button"
+                        >
+                          Request
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -92,11 +103,20 @@ export function Playbooks() {
                   <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-sea">Relationship moves</p>
                   <ul className="mt-2.5 grid gap-2 text-sm">
                     {guide.activities.slice(0, 2).map((activity) => (
-                      <li className="flex items-start gap-2.5" key={activity.name}>
-                        <Sparkles aria-hidden className="mt-0.5 size-3.5 shrink-0 text-gold-deep" />
-                        <span className="text-ink/80">
-                          <strong className="font-semibold text-ink">{activity.name}</strong> — {activity.note}
+                      <li className="flex items-start justify-between gap-2.5" key={activity.name}>
+                        <span className="flex items-start gap-2.5">
+                          <Sparkles aria-hidden className="mt-0.5 size-3.5 shrink-0 text-gold-deep" />
+                          <span className="text-ink/80">
+                            <strong className="font-semibold text-ink">{activity.name}</strong> — {activity.note}
+                          </span>
                         </span>
+                        <button
+                          className="shrink-0 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-sea hover:text-gold-deep"
+                          onClick={() => openBooking({ city: guide.city, kind: "activity", label: activity.name })}
+                          type="button"
+                        >
+                          Request
+                        </button>
                       </li>
                     ))}
                   </ul>

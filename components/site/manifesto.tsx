@@ -43,12 +43,6 @@ export function Manifesto() {
 
   return (
     <section aria-labelledby="manifesto-title" className="relative overflow-hidden bg-paper py-24 md:py-36">
-      <motion.img
-        alt=""
-        aria-hidden
-        className="drift absolute right-[4%] top-10 hidden w-40 opacity-70 drop-shadow-[0_28px_44px_rgba(16,29,40,0.2)] lg:block"
-        src="/assets/campaign/editorial/sprite-sunglasses.png"
-      />
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <p className="kicker text-sea">The mission</p>
         <h2 className="sr-only" id="manifesto-title">

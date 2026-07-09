@@ -2,6 +2,7 @@
 
 import { MotionConfig } from "motion/react";
 import { useMemo, useState } from "react";
+import { BookingModal } from "@/components/site/booking-modal";
 import { BusinessCase } from "@/components/site/business-case";
 import { Cursor } from "@/components/site/cursor";
 import { Destinations } from "@/components/site/destinations";
@@ -16,8 +17,10 @@ import { Preloader } from "@/components/site/preloader";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { Sponsors } from "@/components/site/sponsors";
+import { TripDrawer } from "@/components/site/trip-drawer";
 import { events, getScore, type EventItem } from "@/lib/data";
 import { deliverables, objectives, roles, type CaseState } from "@/lib/memo";
+import { TripProvider } from "@/lib/trip-store";
 
 function getCommercialScore(event: EventItem) {
   return (event.sponsorPriority ?? 0) * 2 + getScore(event);
@@ -31,7 +34,6 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [segment, setSegment] = useState("all");
   const [selectedId, setSelectedId] = useState(events[0].id);
-  const [saved, setSaved] = useState<string[]>([]);
   const [caseState, setCaseState] = useState<CaseState>({
     cost: 4500,
     deliverable: deliverables[0],
@@ -67,10 +69,6 @@ export default function Home() {
     document.getElementById("business-case")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const toggleSave = (id: string) => {
-    setSaved((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]));
-  };
-
   const exploreCity = (city: string) => {
     setSegment("all");
     setQuery(city);
@@ -78,64 +76,61 @@ export default function Home() {
   };
 
   return (
-    <MotionConfig reducedMotion="user">
-      <a
-        className="fixed left-4 top-4 z-[99] -translate-y-24 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-ink transition focus:translate-y-0"
-        href="#events"
-      >
-        Skip to the event board
-      </a>
-      <Preloader />
-      <Cursor />
-      <SiteHeader savedCount={saved.length} />
+    <TripProvider>
+      <MotionConfig reducedMotion="user">
+        <a
+          className="fixed left-4 top-4 z-[99] -translate-y-24 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-ink transition focus:translate-y-0"
+          href="#events"
+        >
+          Skip to the event board
+        </a>
+        <Preloader />
+        <Cursor />
+        <SiteHeader />
+        <TripDrawer onOpenEvent={selectEvent} />
+        <BookingModal />
 
-      <main className="bg-paper text-ink">
-        <HeroJourney onQueryChange={setQuery} query={query} />
+        <main className="bg-paper text-ink">
+          <HeroJourney onQueryChange={setQuery} query={query} />
 
-        <Marquee
-          items={[
-            "Work should feel like a trip",
-            "London",
-            "Tokyo",
-            "Honolulu",
-            "Las Vegas",
-            "Paris",
-            "Plan it",
-            "Prove it",
-            "Enjoy it"
-          ]}
-        />
+          <Marquee
+            items={[
+              "Work should feel like a trip",
+              "London",
+              "Tokyo",
+              "Honolulu",
+              "Las Vegas",
+              "Paris",
+              "Plan it",
+              "Prove it",
+              "Enjoy it"
+            ]}
+          />
 
-        <Manifesto />
-        <Destinations onExplore={exploreCity} />
-        <EventsBoard
-          events={filtered}
-          onSelect={selectEvent}
-          onToggleSave={toggleSave}
-          query={query}
-          savedIds={saved}
-          segment={segment}
-          selectedId={selectedId}
-          setQuery={setQuery}
-          setSegment={setSegment}
-        />
-        <Intelligence
-          event={selected}
-          onBuildCase={buildCaseFor}
-          onToggleSave={toggleSave}
-          saved={saved.includes(selected.id)}
-        />
-        <Phases />
-        <BusinessCase caseState={caseState} setCaseState={setCaseState} />
-        <Playbooks />
-        <Marquee
-          duration={40}
-          items={["Dinners that close quarters", "Receptions people remember", "Memos managers approve", "Cities that do the persuading"]}
-        />
-        <Sponsors />
-      </main>
+          <Manifesto />
+          <Destinations onExplore={exploreCity} />
+          <EventsBoard
+            events={filtered}
+            onSelect={selectEvent}
+            query={query}
+            segment={segment}
+            selectedId={selectedId}
+            setQuery={setQuery}
+            setSegment={setSegment}
+          />
+          <Intelligence event={selected} onBuildCase={buildCaseFor} />
+          <Phases />
+          <BusinessCase caseState={caseState} setCaseState={setCaseState} />
+          <Playbooks />
+          <Marquee
+            duration={40}
+            items={["Dinners that close quarters", "Receptions people remember", "Memos managers approve", "Cities that do the persuading"]}
+          />
+          <Sponsors />
+        </main>
 
-      <SiteFooter />
-    </MotionConfig>
+        <SiteFooter />
+      </MotionConfig>
+    </TripProvider>
   );
 }

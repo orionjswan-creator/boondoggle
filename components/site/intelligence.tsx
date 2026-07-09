@@ -13,6 +13,7 @@ import {
   sectorProfiles,
   type EventItem
 } from "@/lib/data";
+import { useTrip } from "@/lib/trip-store";
 
 function ScoreDial({ score }: { score: number }) {
   const ref = useRef<SVGSVGElement>(null);
@@ -42,19 +43,17 @@ function ScoreDial({ score }: { score: number }) {
 
 export function Intelligence({
   event,
-  onBuildCase,
-  onToggleSave,
-  saved
+  onBuildCase
 }: {
   event: EventItem;
   onBuildCase: (event: EventItem) => void;
-  onToggleSave: (id: string) => void;
-  saved: boolean;
 }) {
   const guide = getCityGuide(event.city);
   const costs = getCosts(event.city);
   const profile = sectorProfiles[event.segment];
   const score = getScore(event);
+  const { isSaved, openBooking, toggleSavedEvent } = useTrip();
+  const saved = isSaved(event.id);
 
   return (
     <section aria-labelledby="intelligence-title" className="scroll-mt-24 bg-paper pb-24 md:pb-32" id="intelligence">
@@ -117,7 +116,7 @@ export function Intelligence({
                   <Button onClick={() => onBuildCase(event)} type="button" variant="gold">
                     Build the business case
                   </Button>
-                  <Button aria-pressed={saved} onClick={() => onToggleSave(event.id)} type="button" variant="inverse">
+                  <Button aria-pressed={saved} onClick={() => toggleSavedEvent(event.id)} type="button" variant="inverse">
                     <Star aria-hidden className={`size-4 ${saved ? "fill-gold text-gold" : ""}`} />
                     {saved ? "Saved" : "Save this week"}
                   </Button>
@@ -169,6 +168,14 @@ export function Intelligence({
                 <p className="mt-4 text-xs leading-relaxed text-ink/55">
                   Likely buyers in the room: {profile.buyer}.
                 </p>
+                <Button
+                  className="mt-4 w-full justify-center"
+                  onClick={() => openBooking({ city: event.city, kind: "room", label: `Private room — ${event.city}` })}
+                  type="button"
+                  variant="ghost"
+                >
+                  Request a private room
+                </Button>
               </div>
 
               <div className="group relative overflow-hidden rounded-[2rem] shadow-soft">
@@ -191,19 +198,37 @@ export function Intelligence({
                   </p>
                   <ul className="mt-3 grid gap-2.5 text-sm text-paper/85">
                     {guide.picks.slice(0, 2).map((pick) => (
-                      <li className="flex items-start gap-2.5" key={pick.name}>
-                        <Utensils aria-hidden className="mt-0.5 size-3.5 shrink-0 text-flare" />
-                        <span>
-                          <strong className="font-semibold text-paper">{pick.name}</strong> — {pick.note}
+                      <li className="flex items-start justify-between gap-2.5" key={pick.name}>
+                        <span className="flex items-start gap-2.5">
+                          <Utensils aria-hidden className="mt-0.5 size-3.5 shrink-0 text-flare" />
+                          <span>
+                            <strong className="font-semibold text-paper">{pick.name}</strong> — {pick.note}
+                          </span>
                         </span>
+                        <button
+                          className="shrink-0 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-glow hover:text-gold"
+                          onClick={() => openBooking({ city: guide.city, kind: "dining", label: pick.name })}
+                          type="button"
+                        >
+                          Request
+                        </button>
                       </li>
                     ))}
                     {guide.activities.slice(0, 1).map((activity) => (
-                      <li className="flex items-start gap-2.5" key={activity.name}>
-                        <Sparkles aria-hidden className="mt-0.5 size-3.5 shrink-0 text-gold" />
-                        <span>
-                          <strong className="font-semibold text-paper">{activity.name}</strong> — {activity.note}
+                      <li className="flex items-start justify-between gap-2.5" key={activity.name}>
+                        <span className="flex items-start gap-2.5">
+                          <Sparkles aria-hidden className="mt-0.5 size-3.5 shrink-0 text-gold" />
+                          <span>
+                            <strong className="font-semibold text-paper">{activity.name}</strong> — {activity.note}
+                          </span>
                         </span>
+                        <button
+                          className="shrink-0 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-glow hover:text-gold"
+                          onClick={() => openBooking({ city: guide.city, kind: "activity", label: activity.name })}
+                          type="button"
+                        >
+                          Request
+                        </button>
                       </li>
                     ))}
                   </ul>

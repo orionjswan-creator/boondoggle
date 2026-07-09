@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
-import { ArrowUpRight, Star } from "lucide-react";
+import { ArrowUpRight, Briefcase } from "lucide-react";
 import { useEffect, useState } from "react";
 import { WorldClocks } from "@/components/site/world-clocks";
+import { useTrip } from "@/lib/trip-store";
 
 const NAV = [
   { href: "#destinations", index: "01", label: "Destinations" },
@@ -13,9 +14,10 @@ const NAV = [
   { href: "#hosting", index: "05", label: "Hosting" }
 ];
 
-export function SiteHeader({ savedCount }: { savedCount: number }) {
+export function SiteHeader() {
   const [overHero, setOverHero] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { openDrawer, totalCount } = useTrip();
 
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { damping: 30, restDelta: 0.001, stiffness: 140 });
@@ -73,20 +75,29 @@ export function SiteHeader({ savedCount }: { savedCount: number }) {
         </nav>
 
         <div className="flex items-center gap-3">
-          <AnimatePresence>
-            {savedCount > 0 ? (
-              <motion.span
-                animate={{ opacity: 1, scale: 1 }}
-                className={`hidden items-center gap-1.5 rounded-full border px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.14em] sm:flex ${
-                  solid ? "border-line bg-cream" : "border-paper/30 bg-paper/10"
-                }`}
-                exit={{ opacity: 0, scale: 0.8 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-              >
-                <Star aria-hidden className="size-3 fill-gold text-gold" /> {savedCount} saved
-              </motion.span>
-            ) : null}
-          </AnimatePresence>
+          <button
+            aria-label={`Your trip${totalCount > 0 ? ` — ${totalCount} item${totalCount === 1 ? "" : "s"}` : ""}`}
+            className={`relative flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-[0.82rem] font-semibold transition duration-300 ease-swift hover:-translate-y-0.5 ${
+              solid ? "border-line bg-cream text-ink hover:border-ink" : "border-paper/30 bg-paper/10 text-paper hover:border-paper/70"
+            }`}
+            onClick={openDrawer}
+            type="button"
+          >
+            <Briefcase aria-hidden className="size-4" />
+            <span className="hidden sm:inline">Your trip</span>
+            <AnimatePresence>
+              {totalCount > 0 ? (
+                <motion.span
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="grid size-5 place-items-center rounded-full bg-gold font-mono text-[0.64rem] font-bold text-ink"
+                  exit={{ opacity: 0, scale: 0.6 }}
+                  initial={{ opacity: 0, scale: 0.6 }}
+                >
+                  {totalCount}
+                </motion.span>
+              ) : null}
+            </AnimatePresence>
+          </button>
 
           <a
             className={`hidden items-center gap-1.5 rounded-full px-4 py-2 text-[0.82rem] font-semibold transition duration-300 ease-swift hover:-translate-y-0.5 md:inline-flex ${
